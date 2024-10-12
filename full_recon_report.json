@@ -1,0 +1,18 @@
+{
+    "url": "http://saralabirlagyanjyoti.com",
+    "emails": [],
+    "credentials": [],
+    "password_fields": 0,
+    "subdomains": [
+        "www.saralabirlagyanjyoti.com",
+        "mail.saralabirlagyanjyoti.com",
+        "ftp.saralabirlagyanjyoti.com",
+        "webmail.saralabirlagyanjyoti.com"
+    ],
+    "open_ports": {
+        "80": "HTTP",
+        "443": "HTTPS"
+    },
+    "directories": [],
+    "vulnerabilities": []
+}

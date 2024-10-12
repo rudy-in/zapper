@@ -1,0 +1,17 @@
+2024-10-12 20:26:23,102 - INFO - Starting full recon for http://saralabirlagyanjyoti.com
+2024-10-12 20:26:24,078 - ERROR - Error fetching http://saralabirlagyanjyoti.com: 406 Client Error: Not Acceptable for url: http://saralabirlagyanjyoti.com/
+2024-10-12 20:26:24,179 - INFO - Found subdomain: www.saralabirlagyanjyoti.com with IP 192.185.155.225
+2024-10-12 20:26:24,590 - INFO - Found subdomain: mail.saralabirlagyanjyoti.com with IP 192.185.155.225
+2024-10-12 20:26:24,691 - INFO - Found subdomain: ftp.saralabirlagyanjyoti.com with IP 192.185.155.225
+2024-10-12 20:26:26,740 - INFO - Found subdomain: webmail.saralabirlagyanjyoti.com with IP 192.185.155.225
+2024-10-12 20:26:27,252 - INFO - Port 80 is open on saralabirlagyanjyoti.com (Service: HTTP)
+2024-10-12 20:26:27,253 - INFO - Port 443 is open on saralabirlagyanjyoti.com (Service: HTTPS)
+2024-10-12 20:26:27,970 - INFO - Directory not found: http://saralabirlagyanjyoti.com/admin
+2024-10-12 20:26:28,789 - INFO - Directory not found: http://saralabirlagyanjyoti.com/login
+2024-10-12 20:26:29,710 - INFO - Directory not found: http://saralabirlagyanjyoti.com/uploads
+2024-10-12 20:26:30,427 - INFO - Directory not found: http://saralabirlagyanjyoti.com/api
+2024-10-12 20:26:31,045 - INFO - Directory not found: http://saralabirlagyanjyoti.com/dashboard
+2024-10-12 20:26:31,860 - INFO - No vulnerability found for: Check for .env file at http://saralabirlagyanjyoti.com/.env
+2024-10-12 20:26:32,576 - INFO - No vulnerability found for: Check for backup zip file at http://saralabirlagyanjyoti.com/backup.zip
+2024-10-12 20:26:32,577 - INFO - Results saved to full_recon_report.json
+2024-10-12 20:26:32,577 - INFO - Full recon completed. Results saved to full_recon_report.json
