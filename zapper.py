@@ -1,11 +1,14 @@
 import click
+import logging
 from scraper import scrape_website, extract_sensitive_data
 from subdomain_enum import find_subdomains
-from port_scan import advanced_port_scan
+from port_scan import port_scan
 from dir_enum import directory_enum
 from vuln_scan import simple_vuln_scan
+from whois_query import whois_lookup
+from dns_query import dns_query
+from email_harvester import harvest_emails
 from utils import save_results
-import logging
 
 # Setup logging
 logging.basicConfig(
@@ -57,7 +60,7 @@ def scan(target, ports, output):
     """Scan open ports on the target."""
     ports_list = list(map(int, ports.split(',')))
     logging.info(f"Starting advanced port scan for {target} on ports {ports}")
-    open_ports = advanced_port_scan(target, ports_list)
+    open_ports = port_scan(target, ports_list)
     save_results(open_ports, output)
     logging.info(f"Port scanning completed. Results saved to {output}")
     print(f"Port scanning completed. Results saved to {output}")
@@ -85,6 +88,39 @@ def vuln_scan(url, output):
     print(f"Vulnerability scanning completed. Results saved to {output}")
 
 @cli.command()
+@click.option('--domain', prompt='Target Domain', help='The domain for Whois lookup.')
+@click.option('--output', default='whois_result.txt', help='Output file for Whois results.')
+def whois(domain, output):
+    """Perform a Whois lookup for the specified domain."""
+    logging.info(f"Starting Whois lookup for {domain}")
+    result = whois_lookup(domain)
+    save_results(result, output)
+    logging.info(f"Whois lookup completed. Results saved to {output}")
+    print(f"Whois lookup completed. Results saved to {output}")
+
+@cli.command()
+@click.option('--domain', prompt='Target Domain', help='The domain for DNS query.')
+@click.option('--output', default='dns_results.txt', help='Output file for DNS results.')
+def dns(domain, output):
+    """Perform a DNS query for the specified domain."""
+    logging.info(f"Starting DNS query for {domain}")
+    result = dns_query(domain)
+    save_results(result, output)
+    logging.info(f"DNS query completed. Results saved to {output}")
+    print(f"DNS query completed. Results saved to {output}")
+
+@cli.command()
+@click.option('--url', prompt='Target URL', help='The target website URL for email harvesting.')
+@click.option('--output', default='harvested_emails.txt', help='Output file for harvested emails.')
+def harvest(url, output):
+    """Harvest emails from the specified URL."""
+    logging.info(f"Starting email harvest for {url}")
+    emails = harvest_emails(url)
+    save_results(emails, output, is_list=True)
+    logging.info(f"Email harvesting completed. Results saved to {output}")
+    print(f"Email harvesting completed. Results saved to {output}")
+
+@cli.command()
 @click.option('--url', prompt='Target URL', help='The target website URL for comprehensive recon.')
 @click.option('--output', default='full_recon_report.json', help='Output file for the full recon report.')
 def full(url, output):
@@ -100,7 +136,7 @@ def full(url, output):
     subdomains = find_subdomains(domain)
 
     # Port Scanning
-    open_ports = advanced_port_scan(domain, [80, 443])
+    open_ports = port_scan(domain, [80, 443])
 
     # Directory Enumeration
     directories = directory_enum(url)
